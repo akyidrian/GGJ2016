@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour {
 
 	public static GameController instance = null;
-	public List <PlayerController> playerControllers;
+	public List <ControllableObject> playerControllers;
 
 	void Awake() {
 		if (instance == null)
@@ -24,11 +24,11 @@ public class GameController : MonoBehaviour {
 
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+           
 			if(Physics.Raycast(ray, out hit)) {
 				Debug.DrawLine (ray.origin, ray.direction, Color.green);
 				newPosition = hit.point;
-
+                
 				FindSelectedCharacter().SetNewPosition(newPosition);
 			}
 
@@ -43,9 +43,9 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	private PlayerController FindSelectedCharacter()
+	private ControllableObject FindSelectedCharacter()
 	{
-		PlayerController selectedCharacter = playerControllers[0];
+        ControllableObject selectedCharacter = playerControllers[0];
 
 		for(int i = 0; i < playerControllers.Count; i++) {
 
