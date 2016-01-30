@@ -32,7 +32,6 @@ public class MovableObject : MonoBehaviour
         startPosition = currentPosition;
         startTime = Time.time;
         journeyLength = Vector3.Distance(startPosition, newPosition);
-        //Selected = false;
     }
 
     private void MoveToLocation()

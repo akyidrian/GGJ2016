@@ -16,7 +16,6 @@ public class Planter : ControllableObject
     {
         while (true)
         {
-
             Instantiate(seed, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(plantingDelay);
         }
