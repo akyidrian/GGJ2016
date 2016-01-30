@@ -25,8 +25,10 @@ public class Enemy : MovableObject {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other);
-        Destroy(other.gameObject);
+        if (other.tag == "Tree")
+        {
+            Destroy(other.gameObject);
+        }
     }
 
     void Update()
