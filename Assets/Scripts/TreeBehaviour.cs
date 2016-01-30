@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Tree : MonoBehaviour {
+public class TreeBehaviour : MonoBehaviour {
 
 	public int health = 10;
+	public int healthGrowthFactor = 10;
 	public float growSpeed = 0.1f;
 	public float minSize = 0.1f;
 	public float maxSize = 1.0f;
@@ -24,12 +25,16 @@ public class Tree : MonoBehaviour {
 		if(currentSize < maxSize) {
 			currentSize = Mathf.Lerp(minSize, maxSize, timer * growSpeed);
 			transform.localScale = new Vector3(currentSize, currentSize, currentSize);
+			health = (int)(currentSize * 100);
+
 		}
 		timer += Time.deltaTime;
 	}
 
 	public void Damage(int damage) {
 		health -= damage;
+		currentSize = health/100;
+
 		if(health <= 0) Destroy(gameObject);
 	}
 
