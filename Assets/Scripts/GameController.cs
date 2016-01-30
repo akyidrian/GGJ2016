@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour {
 		for(int i = 0; i < playerControllers.Count; i++) {
 
 			if(playerControllers[i].Selected == true) {
+				Debug.Log (playerControllers[i].name);
 				selectedCharacter = playerControllers[i];
 			}
 		}
