@@ -11,7 +11,6 @@ public class ControllableObject : MovableObject, IPointerClickHandler
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             GameController.instance.SetAllPlayersFalse();
-            Debug.Log("Selected: " + gameObject.name);
             Selected = true;
         }
     }

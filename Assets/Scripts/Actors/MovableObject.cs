@@ -19,7 +19,7 @@ public class MovableObject : MonoBehaviour
         journeyLength = 0f;
     }
 
-    void Update()
+    protected void Update()
     {
         if (journeyLength > 0)
             MoveToLocation();
@@ -32,7 +32,6 @@ public class MovableObject : MonoBehaviour
         startPosition = currentPosition;
         startTime = Time.time;
         journeyLength = Vector3.Distance(startPosition, newPosition);
-        Debug.Log(journeyLength);
         //Selected = false;
     }
 

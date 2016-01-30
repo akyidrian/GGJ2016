@@ -13,6 +13,7 @@ public class GerminateScript : MonoBehaviour {
 
 		int randomIndex = Random.Range(0, trees.Length);
 		GameObject tree = Instantiate(trees[randomIndex], transform.position, rotation) as GameObject;
+        tree.tag = "Tree";
 		tree.GetComponent<Renderer>().material = treeMaterial;
 
 		Destroy(gameObject);
