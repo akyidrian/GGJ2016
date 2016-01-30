@@ -4,10 +4,15 @@ using System.Collections.Generic;
 
 
 public class GameController : MonoBehaviour {
-	
+
+	public static GameController instance = null;
 	public List <PlayerController> playerControllers;
 
 	void Awake() {
+		if (instance == null)
+			instance = this;
+		else if (instance != this)
+			Destroy(gameObject);
 	}
 
 	void Update() {
@@ -30,6 +35,12 @@ public class GameController : MonoBehaviour {
 
 		}   
 
+	}
+
+	public void SetAllPlayersFalse() {
+		for(int i = 0; i < playerControllers.Count; i++) {
+			playerControllers[i].Selected = false;
+		}
 	}
 
 	private PlayerController FindSelectedCharacter()

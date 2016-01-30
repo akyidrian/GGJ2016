@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour, IPointerClickHandler {
 	public void OnPointerClick (PointerEventData eventData)
 	{
 		if(eventData.button == PointerEventData.InputButton.Left) {
+			GameController.instance.SetAllPlayersFalse();
 			Debug.Log ("Selected: " + gameObject.name);
 			Selected = true;
 		}
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour, IPointerClickHandler {
 		startPosition = currentPosition;
 		startTime = Time.time;
 		journeyLength = Vector3.Distance(startPosition, newPosition);
-		Selected = false;
+		//Selected = false;
 	}
 
 	private void MoveToLocation() 
