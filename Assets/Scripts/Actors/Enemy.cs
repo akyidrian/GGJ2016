@@ -4,8 +4,11 @@ using System.Collections;
 public class Enemy : MovableObject {
 
 	public int health = 10;
-    public int attackPower = 5; // Amount of health to take off tree.
+    public int attackPower = 10; // Amount of health to take off tree.
     public EnemyManager enemyManager;
+
+    public float attackDelay = 0.5f;
+    private float timer;
 
     public void Damage(int damage) {
 		health -= damage;		
@@ -34,11 +37,20 @@ public class Enemy : MovableObject {
 
     void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Tree")
+
+        if (timer >= attackDelay && other.tag == "Tree")
         {
             TreeBehaviour tree = other.GetComponent<TreeBehaviour>();
             tree.Damage(attackPower);
+            timer = 0f;
+            Debug.Log("Hit enemy!");
         }
+    }
+
+    void Awake()
+    {
+        base.Awake();
+        timer = 0f;
     }
 
     void Update()
@@ -48,6 +60,8 @@ public class Enemy : MovableObject {
         GameObject[] trees = GameObject.FindGameObjectsWithTag("Tree");
         Vector3 target = GetClosestTarget(trees);
         SetNewPosition(target);
+
+        timer += Time.deltaTime;
     }
 
     void OnDestroy ()
