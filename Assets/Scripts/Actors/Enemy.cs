@@ -3,6 +3,13 @@ using System.Collections;
 
 public class Enemy : MovableObject {
 
+	public int health = 10;
+
+	public void Damage(int damage) {
+		health -= damage;		
+		if(health <= 0) Destroy(gameObject);
+	}
+
     Vector3 GetClosestTarget(GameObject[] targets)
     {
         Vector3 closestTargetPos = new Vector3();

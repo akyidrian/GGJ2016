@@ -7,9 +7,11 @@ public class GerminateScript : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 
-		Quaternion rotation = Quaternion.AngleAxis(270, Vector3.right);		
-		GameObject tree = Instantiate(treePrefab, transform.position, rotation) as GameObject;
-		Destroy(gameObject);
+		if(other.tag == "Grower") {
+			Quaternion rotation = Quaternion.AngleAxis(270, Vector3.right);		
+			Instantiate(treePrefab, transform.position, rotation);
+			Destroy(gameObject);
+		}
 
 	}
 }
