@@ -4,8 +4,10 @@ using System.Collections;
 public class Enemy : MovableObject {
 
 	public int health = 10;
+    public int attackPower = 5; // Amount of health to take off tree.
+    public EnemyManager enemyManager;
 
-	public void Damage(int damage) {
+    public void Damage(int damage) {
 		health -= damage;		
 		if(health <= 0) Destroy(gameObject);
 	}
@@ -30,11 +32,12 @@ public class Enemy : MovableObject {
         return closestTargetPos;
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.tag == "Tree")
         {
-            Destroy(other.gameObject);
+            TreeBehaviour tree = other.GetComponent<TreeBehaviour>();
+            tree.Damage(attackPower);
         }
     }
 
@@ -45,5 +48,10 @@ public class Enemy : MovableObject {
         GameObject[] trees = GameObject.FindGameObjectsWithTag("Tree");
         Vector3 target = GetClosestTarget(trees);
         SetNewPosition(target);
+    }
+
+    void OnDestroy ()
+    {
+        enemyManager.enemyDeathNotify();
     }
 }
