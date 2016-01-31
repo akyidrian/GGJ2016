@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour {
         if (Input.GetKey("3"))
         {
             GameController.instance.SetAllPlayersFalse();
-            playerControllers[3].Selected = true;
+            playerControllers[0].Selected = true;
         }
     }
 
