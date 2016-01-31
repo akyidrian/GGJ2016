@@ -12,9 +12,9 @@ public class TreeBehaviour : MonoBehaviour {
 	private float currentSize;
 
 	void Awake() {
-		currentSize = minSize;
+		currentSize = (float)health/100f;
 		AssignRandomMesh();
-		transform.localScale = new Vector3(minSize, minSize, minSize);
+		transform.localScale = new Vector3(currentSize, currentSize, currentSize);
 
 	}
 
