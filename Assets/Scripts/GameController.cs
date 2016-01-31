@@ -31,11 +31,26 @@ public class GameController : MonoBehaviour {
                 
 				FindSelectedCharacter().SetNewPosition(newPosition);
 			}
+		}
 
+        if (Input.GetKey("1"))
+        {
+            GameController.instance.SetAllPlayersFalse();
+            playerControllers[2].Selected = true;
+        }
 
-		}   
+        if (Input.GetKey("2"))
+        {
+            GameController.instance.SetAllPlayersFalse();
+            playerControllers[1].Selected = true;
+        }
 
-	}
+        if (Input.GetKey("3"))
+        {
+            GameController.instance.SetAllPlayersFalse();
+            playerControllers[3].Selected = true;
+        }
+    }
 
 	public void SetAllPlayersFalse() {
 		for(int i = 0; i < playerControllers.Count; i++) {
